@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thesis Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+
+<nav class="topbar">
+  <span>Thesis Journal</span>
+  <span class="monogram">sb</span>
+  <span class="topbar-right">Shreya Babel</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-main">
+    <p class="crumbs">Shreya Babel &nbsp;/&nbsp; Thesis &nbsp;/&nbsp; Process File</p>
+    <h1>Thesis Journal</h1>
+  </div>
+  <aside class="hero-note">
+    <p>An open log of my thesis process. Research, decisions, meetings and experiments, recorded as they happen.</p>
+    <p>Currently: <span id="currently-text"></span></p>
+    <p id="last-updated"></p>
+  </aside>
+</header>
+
+<main class="desk">
+  <div class="folder" id="folder">
+    <div class="folder-inside" aria-hidden="true"></div>
+    <article class="sheet sheet-left" id="sheet-left"></article>
+    <article class="sheet sheet-right" id="sheet-right" aria-live="polite"></article>
+    <nav class="folder-tabs" id="folder-tabs" role="tablist" aria-label="Journal entries by date"></nav>
+
+    <div class="cover" id="cover" role="button" tabindex="0" aria-label="Open the thesis file">
+      <div class="cover-face cover-front">
+        <div class="cover-top">
+          <p class="mono">Process file.<br>Opened Sep 28, 2026.<br>Entries added as they happen.</p>
+          <span class="file-no">File &#8470;01</span>
+        </div>
+        <h2 class="cover-title">Thesis<br>Journal</h2>
+        <p class="cover-name">Shreya Babel</p>
+        <div class="cover-label mono">
+          <span>To:</span> whoever opens this<br>
+          <span>Re:</span> thesis process, 2026<br>
+          <span>Entries:</span> <b id="cover-count"></b>
+        </div>
+        <div class="stamp"><span>sb</span><small>2026</small></div>
+        <p class="cover-hint mono">Click to open the file &rarr;</p>
+      </div>
+      <div class="cover-face cover-back"></div>
+    </div>
+  </div>
+
+  <div class="flip-controls">
+    <button type="button" class="flip-btn" id="prev-page">&larr; Previous page</button>
+    <span class="page-counter" id="page-counter">Closed</span>
+    <button type="button" class="flip-btn" id="next-page">Next page &rarr;</button>
+  </div>
+  <p class="close-row"><button type="button" class="text-btn" id="close-file">Close the file</button></p>
+</main>
+
+<script>
+  // Always fetch the latest entries and script, never a copy the browser saved earlier.
+  (function () {
+    var v = Date.now();
+    var entries = document.createElement("script");
+    entries.src = "entries.js?v=" + v;
+    entries.onload = function () {
+      var main = document.createElement("script");
+      main.src = "script.js?v=" + v;
+      document.body.appendChild(main);
+    };
+    document.body.appendChild(entries);
+  })();
+</script>
+</body>
+</html>
